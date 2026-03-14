@@ -138,6 +138,27 @@ a {
   margin-top: 1.25rem;
 }
 
+.group-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.group-card {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.38);
+}
+
+.group-card h3 {
+  margin: 0 0 0.75rem;
+  font-size: 1rem;
+  color: var(--accent);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
 .page-block,
 .note {
   border-radius: 24px;
@@ -204,16 +225,33 @@ a {
 }
 
 .filter-toggle {
-  display: inline-flex;
+  display: grid;
+  grid-template-columns: auto 1fr;
   align-items: center;
-  gap: 0.65rem;
-  margin-bottom: 1rem;
-  padding: 0.7rem 0.95rem;
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  background: var(--accent-soft);
+  column-gap: 0.65rem;
+  margin-bottom: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
   color: var(--ink);
   font-size: 0.95rem;
+}
+
+.filter-panel {
+  margin-top: 1.1rem;
+  padding: 1rem 1.05rem;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: rgba(239, 224, 208, 0.65);
+}
+
+.filter-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.45rem;
+  margin-top: 0;
 }
 
 .filter-toggle input {
@@ -221,7 +259,11 @@ a {
 }
 
 .page-filter {
-  margin-top: 1.1rem;
+  margin-top: 0;
+}
+
+.filter-toggle span {
+  line-height: 1.2;
 }
 
 .island-filter select {
@@ -292,6 +334,12 @@ a {
   .card-link {
     border-radius: 20px;
   }
+
+  .filter-toggle {
+    width: 100%;
+    margin-bottom: 0;
+    align-items: start;
+  }
 }
 
 @media (max-width: 430px) {
@@ -299,5 +347,19 @@ a {
     font-size: clamp(1.7rem, 8.4vw, 2.35rem);
     line-height: 1;
     letter-spacing: -0.02em;
+  }
+
+  .filter-stack {
+    gap: 0.6rem;
+  }
+
+  .filter-toggle {
+    font-size: 0.92rem;
+    line-height: 1.35;
+  }
+
+  .filter-panel {
+    padding: 0.9rem;
+    border-radius: 18px;
   }
 }

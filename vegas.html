@@ -20,11 +20,27 @@
           Glenn's Vegas restaurant, bar, and entertainment recommendations, kept
           in a simple one-item-per-line format.
         </p>
-        <label class="filter-toggle page-filter">
-          <input id="excitement-filter" type="checkbox" />
-          <span>Show only entries with red exclamation marks</span>
-        </label>
+        <section class="filter-panel" aria-label="Vegas filters">
+          <div class="filter-stack">
+            <label class="filter-toggle">
+              <input id="group-by-type" type="checkbox" />
+              <span>Group restaurants by type</span>
+            </label>
+            <label class="filter-toggle page-filter">
+              <input id="excitement-filter" type="checkbox" />
+              <span>Show only entries with red exclamation marks</span>
+            </label>
+          </div>
+        </section>
       </header>
+
+      <section class="page-block grouped-view" id="vegas-grouped-view" hidden>
+        <div class="page-divider">Grouped view</div>
+        <section class="section-block">
+          <h2>Restaurants by type</h2>
+          <div id="vegas-grouped-results" class="group-grid"></div>
+        </section>
+      </section>
 
       <div class="page-content">
         <section class="page-block">
@@ -145,20 +161,63 @@
       </div>
     </main>
     <script>
+      const vegasStorageKeys = {
+        excitement: "vegas-excitement-filter",
+        grouping: "vegas-group-by-type"
+      };
       const filter = document.getElementById("excitement-filter");
+      const groupByType = document.getElementById("group-by-type");
       const lists = Array.from(document.querySelectorAll(".vegas-filter-list"));
+      const vegasItems = lists.flatMap((list) => Array.from(list.querySelectorAll("li")));
       const vegasPlaceNames = Array.from(document.querySelectorAll(".vegas-filter-list .place-name"));
+      const vegasGroupedView = document.getElementById("vegas-grouped-view");
+      const vegasGroupedResults = document.getElementById("vegas-grouped-results");
+      const vegasRecommendationSections = Array.from(
+        document.querySelectorAll(".section-block")
+      ).filter((section) => section.querySelector(".vegas-filter-list"));
+      const vegasPageBlocks = Array.from(document.querySelectorAll(".page-content > .page-block"));
+      const vegasPageDividers = Array.from(document.querySelectorAll(".page-content .page-divider"));
 
-      if (filter && lists.length > 0) {
-        const items = lists.flatMap((list) => Array.from(list.querySelectorAll("li")));
+      function inferRestaurantType(item) {
+        const text = item.textContent.toLowerCase();
 
-        filter.addEventListener("change", () => {
-          const showOnlyExciting = filter.checked;
-          for (const item of items) {
-            const isExciting = item.dataset.exciting === "true";
-            item.hidden = showOnlyExciting && !isExciting;
-          }
-        });
+        if (/(pizza|\bgreat pie\b|\bgood pie\b|grimaldi|metro pizza|pizza rock|joe's ny pizza|those guys pies)/.test(text)) {
+          return "Pizza";
+        }
+        if (/(korean|hwaro|kim chee|han korean|master kim)/.test(text)) {
+          return "Korean";
+        }
+        if (/(thai|lotus of siam|le thai|nittaya|taba thai)/.test(text)) {
+          return "Thai";
+        }
+        if (/(vietnamese|pho|black sheep)/.test(text)) {
+          return "Vietnamese";
+        }
+        if (/(japanese|sushi|katsu|izakaya|shabu)/.test(text)) {
+          return "Japanese & Sushi";
+        }
+        if (/(chinese|taiwanese|dim sum|dumpling|noodle|mott 32|china mama|orchids garden|palette tea lounge|xiao long|din tai fung)/.test(text)) {
+          return "Chinese & Dim Sum";
+        }
+        if (/(french|crepe|bakery|bistro|robuchon|bouchon|breizh|gabi coffee|mon ami gabi)/.test(text)) {
+          return "French & Bakery";
+        }
+        if (/(italian|greek|gaetano|piero|capo|mastrioni|bootlegger|amore taste of chicago|nora|milo)/.test(text)) {
+          return "Italian & European";
+        }
+        if (/(mexican|birria|taco|cantina|tapas|por favor|vito's tacos|el dorado|los antojos|los arcos|el gato tapos)/.test(text)) {
+          return "Mexican & Spanish";
+        }
+        if (/(bbq|barbeque|yardbird|soul belly|texas bbq|big b's)/.test(text)) {
+          return "BBQ";
+        }
+        if (/(steak|prime rib|oyster|seafood|lobster|fish & chips|crab|golden steer|lawry|echo & rig|anthony's|starboard tack|ace seafood|sterling buffet|the palms)/.test(text)) {
+          return "Steak & Seafood";
+        }
+        if (/(tiki|drinking room|frankie's tiki room|golden tiki|with love always)/.test(text)) {
+          return "Bars & Nightlife";
+        }
+        return "American & Other";
       }
 
       for (const placeName of vegasPlaceNames) {
@@ -176,6 +235,112 @@
         mapLink.textContent = "📍";
         placeName.after(mapLink);
       }
+
+      for (const item of vegasItems) {
+        item.dataset.type = inferRestaurantType(item);
+      }
+
+      function renderGroupedView(showOnlyExciting) {
+        if (!vegasGroupedResults) {
+          return;
+        }
+
+        const order = [
+          "Steak & Seafood",
+          "BBQ",
+          "Japanese & Sushi",
+          "Korean",
+          "Thai",
+          "Chinese & Dim Sum",
+          "Vietnamese",
+          "Italian & European",
+          "Pizza",
+          "French & Bakery",
+          "Mexican & Spanish",
+          "Bars & Nightlife",
+          "American & Other"
+        ];
+
+        const visibleItems = vegasItems.filter(
+          (item) => !showOnlyExciting || item.dataset.exciting === "true"
+        );
+
+        vegasGroupedResults.innerHTML = "";
+
+        for (const type of order) {
+          const itemsForType = visibleItems.filter((item) => item.dataset.type === type);
+          if (itemsForType.length === 0) {
+            continue;
+          }
+
+          const section = document.createElement("section");
+          section.className = "group-card";
+
+          const heading = document.createElement("h3");
+          heading.textContent = type;
+          section.appendChild(heading);
+
+          const list = document.createElement("ul");
+          list.className = "plain-list tight-list";
+
+          for (const item of itemsForType) {
+            list.appendChild(item.cloneNode(true));
+          }
+
+          section.appendChild(list);
+          vegasGroupedResults.appendChild(section);
+        }
+      }
+
+      function updateVegasViews() {
+        const showOnlyExciting = filter?.checked ?? false;
+        const isGrouped = groupByType?.checked ?? false;
+
+        for (const item of vegasItems) {
+          const isExciting = item.dataset.exciting === "true";
+          item.hidden = showOnlyExciting && !isExciting;
+        }
+
+        renderGroupedView(showOnlyExciting);
+
+        for (const section of vegasRecommendationSections) {
+          section.hidden = isGrouped;
+        }
+
+        for (const divider of vegasPageDividers) {
+          divider.hidden = isGrouped;
+        }
+
+        for (const pageBlock of vegasPageBlocks) {
+          const hasVisibleSections = Array.from(pageBlock.querySelectorAll(".section-block")).some(
+            (section) => !section.hidden
+          );
+          pageBlock.hidden = !hasVisibleSections;
+        }
+
+        if (vegasGroupedView) {
+          vegasGroupedView.hidden =
+            !isGrouped || !vegasGroupedResults || !vegasGroupedResults.children.length;
+        }
+      }
+
+      if (filter) {
+        filter.checked = localStorage.getItem(vegasStorageKeys.excitement) === "true";
+        filter.addEventListener("change", () => {
+          localStorage.setItem(vegasStorageKeys.excitement, String(filter.checked));
+          updateVegasViews();
+        });
+      }
+
+      if (groupByType) {
+        groupByType.checked = localStorage.getItem(vegasStorageKeys.grouping) === "true";
+        groupByType.addEventListener("change", () => {
+          localStorage.setItem(vegasStorageKeys.grouping, String(groupByType.checked));
+          updateVegasViews();
+        });
+      }
+
+      updateVegasViews();
     </script>
   </body>
 </html>
