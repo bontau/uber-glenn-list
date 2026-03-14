@@ -68,6 +68,11 @@ a {
 
 .hero h1 {
   font-size: clamp(2.2rem, 6vw, 4.4rem);
+  text-wrap: balance;
+}
+
+.home-title-line {
+  display: block;
 }
 
 .page-header h1 {
@@ -278,5 +283,13 @@ a {
   .note,
   .card-link {
     border-radius: 20px;
+  }
+}
+
+@media (max-width: 430px) {
+  .hero h1 {
+    font-size: clamp(1.7rem, 8.4vw, 2.35rem);
+    line-height: 1;
+    letter-spacing: -0.02em;
   }
 }
