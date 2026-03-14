@@ -20,6 +20,16 @@
           Ranked restaurant picks across Oʻahu, Maui, Hawaiʻi Island, Kauaʻi, and
           category favorites around the islands.
         </p>
+        <label class="filter-toggle page-filter island-filter">
+          <span>Island</span>
+          <select id="hawaii-island-filter" aria-label="Filter Hawaii restaurants by island">
+            <option value="all">All islands</option>
+            <option value="oahu">Oʻahu</option>
+            <option value="maui">Maui</option>
+            <option value="hawaii-island">Hawaiʻi Island</option>
+            <option value="kauai">Kauaʻi</option>
+          </select>
+        </label>
       </header>
 
       <div class="page-content">
@@ -430,7 +440,33 @@
       </div>
     </main>
     <script>
+      const islandMap = {
+        "Arancino": ["oahu", "hawaii-island"],
+        "Coco Deck Lahaina": ["maui"],
+        "Mama’s Fish House": ["maui"],
+        "Monkeypod Kitchen Kaʻanapali": ["maui"],
+        "Mala Ocean Tavern": ["maui"],
+        "Merriman’s Kapalua": ["maui"],
+        "Monkeypod Kitchen by Merriman": ["oahu", "maui", "hawaii-island"],
+        "Cafe O’Lei": ["maui"],
+        "Maui Brewing Co.": ["oahu", "maui", "hawaii-island"],
+        "The Beach House": ["kauai"],
+        "ʻĀina Kauaʻi Restaurant": ["kauai"],
+        "RumFire Poʻipū Beach": ["kauai"],
+        "Hukilau Lanai": ["kauai"],
+        "Miller & Lux Hualalai": ["hawaii-island"],
+        "Merriman’s Waimea": ["hawaii-island"],
+        "Kaleo’s Bar & Grill": ["hawaii-island"],
+        "Engawa by Islander Sake Brewery": ["hawaii-island"],
+        "Beer Lab Hawaiʻi": ["oahu", "hawaii-island"],
+        "Merriman’s Honolulu": ["oahu"],
+        "Highway Inn": ["oahu", "hawaii-island"]
+      };
+
       const hawaiiEntries = Array.from(document.querySelectorAll(".entry-list li"));
+      const islandFilter = document.getElementById("hawaii-island-filter");
+      const hawaiiCategories = Array.from(document.querySelectorAll(".award-category"));
+      const hawaiiPages = Array.from(document.querySelectorAll(".page-block"));
 
       for (const entry of hawaiiEntries) {
         const rank = entry.querySelector(".rank");
@@ -447,6 +483,8 @@
         }
 
         const restaurantName = nameNode.textContent.trim();
+        const islands = islandMap[restaurantName] ?? ["oahu"];
+        entry.dataset.islands = islands.join(",");
         const query = encodeURIComponent(`${restaurantName} Hawaii`);
         const mapLink = document.createElement("a");
         mapLink.className = "map-link";
@@ -457,6 +495,32 @@
         mapLink.textContent = "📍";
         nameNode.after(mapLink);
       }
+
+      function applyIslandFilter() {
+        const selectedIsland = islandFilter?.value ?? "all";
+
+        for (const entry of hawaiiEntries) {
+          const islands = (entry.dataset.islands || "").split(",").filter(Boolean);
+          entry.hidden = selectedIsland !== "all" && !islands.includes(selectedIsland);
+        }
+
+        for (const category of hawaiiCategories) {
+          const hasVisibleEntries = Array.from(category.querySelectorAll("li")).some(
+            (entry) => !entry.hidden
+          );
+          category.hidden = !hasVisibleEntries;
+        }
+
+        for (const page of hawaiiPages) {
+          const hasVisibleCategories = Array.from(page.querySelectorAll(".award-category")).some(
+            (category) => !category.hidden
+          );
+          page.hidden = !hasVisibleCategories;
+        }
+      }
+
+      islandFilter?.addEventListener("change", applyIslandFilter);
+      applyIslandFilter();
     </script>
   </body>
 </html>
