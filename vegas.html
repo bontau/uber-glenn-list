@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Las Vegas Recommendations</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <nav class="top-nav" aria-label="Page navigation">
+        <a href="index.html">Back to index</a>
+        <span class="meta">Las Vegas</span>
+      </nav>
+
+      <header class="page-header">
+        <p class="eyebrow">Glenn's Recommendations</p>
+        <h1>Las Vegas Food and Entertainment Notes</h1>
+        <p>
+          Glenn's Vegas restaurant, bar, and entertainment recommendations, kept
+          in a simple one-item-per-line format.
+        </p>
+        <label class="filter-toggle page-filter">
+          <input id="excitement-filter" type="checkbox" />
+          <span>Show only entries with red exclamation marks</span>
+        </label>
+      </header>
+
+      <div class="page-content">
+        <section class="page-block">
+          <div class="page-divider">Page 1</div>
+          <section class="section-block">
+            <h2>Recommended places</h2>
+            <ul class="plain-list tight-list vegas-filter-list">
+              <li data-exciting="false"><span class="place-name">Bob Taylor&rsquo;s Original Ranch House</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Bob%20Taylor%27s%20Original%20Ranch%20House%20Las%20Vegas" target="_blank" rel="noopener noreferrer" aria-label="Open Bob Taylor's Original Ranch House in Google Maps">📍</a> - old hidden gem off the Strip.</li>
+              <li data-exciting="false"><span class="place-name">Lawry&rsquo;s</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Lawry%27s%20Las%20Vegas" target="_blank" rel="noopener noreferrer" aria-label="Open Lawry's in Google Maps">📍</a> - meat lovers dream prime rib... oh yea. (Famous for a reason!)</li>
+              <li data-exciting="false"><span class="place-name">Golden Steer</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Golden%20Steer%20Las%20Vegas" target="_blank" rel="noopener noreferrer" aria-label="Open Golden Steer in Google Maps">📍</a> - old time beef &amp; seafood favorite (can&rsquo;t go wrong).</li>
+              <li data-exciting="true"><span class="place-name">Herbs &amp; Rye</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=Herbs%20%26%20Rye%20Las%20Vegas" target="_blank" rel="noopener noreferrer" aria-label="Open Herbs &amp; Rye in Google Maps">📍</a> - a must go classic steak &amp; lobster spot. (Not that expensive) <span class="uncertain">(!!!)</span></li>
+              <li data-exciting="false"><span class="place-name">L2 Texas BBQ</span><a class="map-link" href="https://www.google.com/maps/search/?api=1&amp;query=L2%20Texas%20BBQ%20Las%20Vegas" target="_blank" rel="noopener noreferrer" aria-label="Open L2 Texas BBQ in Google Maps">📍</a> - in the mood for all you can eat BBQ? Here it is... $33 p/p.</li>
+              <li data-exciting="false"><span class="place-name">Big B&rsquo;s</span> - 5-star real Texas BBQ, a locals favorite.</li>
+              <li data-exciting="false"><span class="place-name">Han Korean BBQ</span> - premium meat and seafood, all you can eat.</li>
+              <li data-exciting="false"><span class="place-name">Soul Belly</span> - real southern BBQ (Downtown).</li>
+              <li data-exciting="false"><span class="place-name">Yardbird</span> - killer chicken restaurant at The Venetian.</li>
+              <li data-exciting="false"><span class="place-name">Echo &amp; Rig</span> - steaks and seafood in a great ambiance.</li>
+              <li data-exciting="false"><span class="place-name">With Love Always</span> - greatest smash burger in Vegas.</li>
+              <li data-exciting="true"><span class="place-name">Ton Ton Katsuya</span> - authentic Japanese pork katsu (the real Japanese deal) <span class="uncertain">(!!)</span></li>
+              <li data-exciting="true"><span class="place-name">Sushi Kiroyoshi</span> - Japanese, no joke <span class="uncertain">(!!)</span></li>
+              <li data-exciting="false"><span class="place-name">Top Sushi &amp; Oyster</span> - Henderson... all you can eat $35 p/p.</li>
+              <li data-exciting="false"><span class="place-name">Samurai</span> - fine Japanese BBQ and grill, high-quality meats and great sauces.</li>
+              <li data-exciting="false"><span class="place-name">Kaizen Sushi</span> - all you can eat sushi and damn good! Out by Anthem.</li>
+              <li data-exciting="false"><span class="place-name">Sushi Neko</span> - an all you can eat, great quality spot for $29 p/p.</li>
+              <li data-exciting="false"><span class="place-name">Chanko</span> - shabu &amp; izakaya, cozy and 4 stars.</li>
+              <li data-exciting="false"><span class="place-name">Sakana</span> - Japanese fusion. Has vegetarian dishes. All you can eat options.</li>
+              <li data-exciting="false"><span class="place-name">Hwaro</span> - Korean BBQ, all you can eat $40 p/p (a ribeye per person too!).</li>
+              <li data-exciting="false"><span class="place-name">Master Kim</span> - casual Korean BBQ chain. (Great for lunch.)</li>
+              <li data-exciting="false"><span class="place-name">Le Thai</span> - try hidden gem off Fremont Street. Cheap &amp; amazing.</li>
+              <li data-exciting="false"><span class="place-name">Nittaya&rsquo;s Secret Kitchen</span> - highly rated upscale Thai in the Summerlin area.</li>
+              <li data-exciting="false"><span class="place-name">Sterling Buffet</span> - Bally&rsquo;s Sunday lobster buffet $125 p/p.</li>
+              <li data-exciting="false"><span class="place-name">The Palms</span> - Wednesday lobster buffet $85 p/p.</li>
+              <li data-exciting="true"><span class="place-name">Oyster Bar</span> - Palace Station Hotel. Expect a line... worth it! <span class="uncertain">(!!!!)</span></li>
+              <li data-exciting="false"><span class="place-name">Oyster Bar</span> - Santa Fe Station Hotel. Same food, less line.</li>
+              <li data-exciting="false"><span class="place-name">Anthony&rsquo;s Steak &amp; Seafood</span> - M Hotel. Sunday buffet is top spot in Vegas.</li>
+              <li data-exciting="false"><span class="place-name">Starboard Tack</span> - est. 1970, old school fish &amp; chips, huge rum selection.</li>
+              <li data-exciting="false"><span class="place-name">Ace Seafood Buffet</span> - at the Palms Hotel every Friday, prime rib and all crab... $50 p/p.</li>
+              <li data-exciting="false"><span class="place-name">Big Al&rsquo;s</span> - seafood &amp; oyster bar.</li>
+              <li data-exciting="false"><span class="place-name">Black Sheep</span> - great Vietnamese, pho, lemongrass chicken.</li>
+              <li data-exciting="false"><span class="place-name">Pho Kim Long</span> - authentic Vietnamese, 2 locations (go Chinatown).</li>
+              <li data-exciting="false"><span class="place-name">Taba Thai</span> - nothing fancy, just killer Thai food for a great price.</li>
+              <li data-exciting="false"><span class="place-name">Lotus of Siam</span> - traditional Thai, high-end and great!</li>
+              <li data-exciting="true"><span class="place-name">Din Tai Fung</span> - Aria, the best Taiwanese fusion (awesome) <span class="uncertain">(!!)</span></li>
+              <li data-exciting="true"><span class="place-name">Xiao Long Dumpling</span> - off the Strip, clean &amp; not expensive. (Foie gras dumplings <span class="uncertain">(!!)</span>)</li>
+              <li data-exciting="true"><span class="place-name">Palette Tea Lounge</span> - perhaps up there with the best dim sum in Vegas... <span class="uncertain">(!!)</span></li>
+              <li data-exciting="false"><span class="place-name">Magic Noodle</span> - fresh and inexpensive Chinese noodle shop.</li>
+              <li data-exciting="false"><span class="place-name">Orchids Garden</span> - just a very good Chinese restaurant.</li>
+              <li data-exciting="false"><span class="place-name">China Mama</span> - can&rsquo;t go wrong. Just ask Guy Fieri, who did a great review on this place.</li>
+              <li data-exciting="false"><span class="place-name">Mott 32</span> - high-end Chinese... (Peking duck, soup dumplings) a hot spot!</li>
+              <li data-exciting="true"><span class="place-name">Italian American Club</span> - a great find, live music <span class="uncertain">(!!)</span></li>
+              <li data-exciting="false"><span class="place-name">Battista&rsquo;s Italian</span> - there since 1970, old school Italian with great value.</li>
+              <li data-exciting="false"><span class="place-name">Gaetano&rsquo;s</span> - family owned great Italian in a fine-dining setting.</li>
+              <li data-exciting="true"><span class="place-name">Piero&rsquo;s</span> - classy old-school northern Italian 5-star amazing. Known for osso buco <span class="uncertain">(!!!)</span></li>
+              <li data-exciting="false"><span class="place-name">Capo&rsquo;s</span> - Italian speakeasy/subterranean, secret door (novelty cool) live music.</li>
+              <li data-exciting="false"><span class="place-name">Mastrioni&rsquo;s</span> - an Italian favorite of Carlo Santana. Authentic and fabulous!</li>
+              <li data-exciting="false"><span class="place-name">The Bootlegger</span> - classic southern Italian, live music.</li>
+              <li data-exciting="false"><span class="place-name">Amore Taste of Chicago</span> - best wet Italian sub in Vegas. Dip away!</li>
+              <li data-exciting="false"><span class="place-name">Grimaldi&rsquo;s</span> - pizza/Italian! Awesome from NYC and legendary.</li>
+              <li data-exciting="false"><span class="place-name">Nora&rsquo;s</span> - mom &amp; pop home-style Italian, priced right and old school delicious.</li>
+              <li data-exciting="true"><span class="place-name">Milo&rsquo;s</span> - Greek (expensive but worth it). Go for lunch, more reasonable. <span class="uncertain">(!!)</span></li>
+            </ul>
+          </section>
+        </section>
+
+        <section class="page-block">
+          <div class="page-divider">Page 2</div>
+          <section class="section-block">
+            <h2>More food picks</h2>
+            <ul class="plain-list tight-list vegas-filter-list">
+              <li data-exciting="false"><span class="place-name">Metro Pizza</span> - home of the meatball in-crust pizza.</li>
+              <li data-exciting="false"><span class="place-name">Joe&rsquo;s NY Pizza</span> - behind the Strip, more awards for pizza than any other place in Vegas.</li>
+              <li data-exciting="false"><span class="place-name">Great Pie</span> - Main Street. Awesome pizza and a killer Caesar salad.</li>
+              <li data-exciting="false"><span class="place-name">Pizza Rock</span> - NY, Chicago, Detroit styles and great cocktails.</li>
+              <li data-exciting="false"><span class="place-name">Good Pie</span> - Brooklyn style and one of the best pie&rsquo;s in Vegas.</li>
+              <li data-exciting="false"><span class="place-name">Those Guys Pies</span> - awesome pizza, but best for Philly cheese steak hoagies.</li>
+              <li data-exciting="true"><span class="place-name">Mon Ami Gabi</span> - Paris hotel - French bistro. Great for breakfast, lunch or dinner <span class="uncertain">(a must!!!!)</span></li>
+              <li data-exciting="true"><span class="place-name">Joel Robuchon</span> - absolutely the top place in Vegas for French delicious... very expensive <span class="uncertain">(!!!!)</span></li>
+              <li data-exciting="false"><span class="place-name">L&rsquo;Atelier</span> - a more casual version of the epic 3x Michelin star Joel Robuchon. (Next door to it.)</li>
+              <li data-exciting="true"><span class="place-name">Bouchon</span> - very classy, beautiful place, French delicious, moderately priced <span class="uncertain">(!!)</span></li>
+              <li data-exciting="true"><span class="place-name">Rosallie Le French Cafe</span> - all French, very authentic breakfast or lunch. Great vibe <span class="uncertain">(!!!!)</span></li>
+              <li data-exciting="true"><span class="place-name">Burgundy French Bakery Cafe</span> - awesome breakfast/lunch <span class="uncertain">(!!)</span></li>
+              <li data-exciting="true"><span class="place-name">Cafe Breizh</span> - super cool French indoor/outdoor cafe, awesome coffee <span class="uncertain">(!!)</span></li>
+              <li data-exciting="false"><span class="place-name">The Real Crepe</span> - very French, clean and totally awesome!</li>
+              <li data-exciting="true"><span class="place-name">Gabi Coffee &amp; Bakery</span> - no name outside, cool as hell. You will love it <span class="uncertain">(!!)</span></li>
+              <li data-exciting="false"><span class="place-name">Lola&rsquo;s</span> - Cajun/Creole... small, cozy and tasty stuff.</li>
+              <li data-exciting="false"><span class="place-name">Weiss Deli</span> - pastrami/corned beef, etc. Great Jewish eats.</li>
+              <li data-exciting="false"><span class="place-name">Sammy&rsquo;s Pastrami</span> - known for best pastrami and burgers. Old school.</li>
+              <li data-exciting="false"><span class="place-name">Bagel &amp; Schmear</span> - (everything Jewish, near Convention Center).</li>
+              <li data-exciting="false"><span class="place-name">Vito&rsquo;s Tacos</span> - 4 1/2 star joint. Juicy &amp; delicious stuff here.</li>
+              <li data-exciting="false"><span class="place-name">El Dorado Cantina</span> - a bit fancy, nice atmosphere. Very good Mexican.</li>
+              <li data-exciting="false"><span class="place-name">Los Antojos Mexican</span> - Mexican family owned and very authentic... awesome!</li>
+              <li data-exciting="false"><span class="place-name">Los Arcos Mexican</span> - killer birria tacos with dipping au ju. Oh baby.</li>
+              <li data-exciting="false"><span class="place-name">El Gato Tapos</span> - fabulous Spanish tapas &amp; great cocktails in a super cool, cozy atmosphere.</li>
+              <li data-exciting="false"><span class="place-name">Golden Tiki</span> - Hawaiian fun, great bar and cocktails. A memorable experience for sure!</li>
+              <li data-exciting="false"><span class="place-name">Frankie&rsquo;s Tiki Room</span> - authentic tiki bar, open 24 hours.</li>
+              <li data-exciting="false"><span class="place-name">Mas Por Favor</span> - awesome bar (behind a taco place up front). Secret drinking room!</li>
+            </ul>
+          </section>
+
+          <section class="section-block">
+            <h2>Entertainment and planning links</h2>
+            <ul class="source-links">
+              <li><a href="https://www.thespherevegas.com/" target="_blank" rel="noopener noreferrer">The Sphere Las Vegas</a></li>
+              <li><a href="https://vegas.eater.com/22568395/best-food-las-vegas-restaurants-where-to-eat" target="_blank" rel="noopener noreferrer">Vegas food and entertainment links</a></li>
+              <li><a href="https://vegas.eater.com/maps/best-prime-rib-restaurants-las-vegas" target="_blank" rel="noopener noreferrer">Prime-rib restaurants by category</a></li>
+              <li><a href="https://www.washingtonpost.com/travel/tips/fremont-las-vegas-things-to-do/" target="_blank" rel="noopener noreferrer">Things to do off the Las Vegas Strip</a></li>
+              <li><a href="https://tourscanner.com/blog/things-to-do-on-the-las-vegas-strip/" target="_blank" rel="noopener noreferrer">90 fun things to do on the Las Vegas Strip</a></li>
+              <li><a href="https://karpiakcaravan.com/las-vegas-attractions/" target="_blank" rel="noopener noreferrer">Incredible Las Vegas attractions you must visit</a></li>
+              <li><a href="https://www.albomadventures.com/things-to-do-in-vegas-besides-gambling/" target="_blank" rel="noopener noreferrer">Fun things to do in Vegas besides gambling and drinking</a></li>
+              <li><a href="https://tourscanner.com/blog/museums-in-las-vegas/" target="_blank" rel="noopener noreferrer">35 brilliant museums in Las Vegas</a></li>
+              <li><a href="https://myflyingleap.com/nevada/3-day-las-vegas-itinerary/" target="_blank" rel="noopener noreferrer">The ultimate 3-day Las Vegas itinerary</a></li>
+              <li><a href="https://tiqets.com/" target="_blank" rel="noopener noreferrer">It&rsquo;s not all about food and gambling. New, interesting, great for kids, expensive.</a></li>
+              <li><a href="https://www.instagram.com/reel/CjESZzPpRRX/?igshid=YmMyMTA2M2Y%3D" target="_blank" rel="noopener noreferrer">Magician&rsquo;s study</a></li>
+            </ul>
+            <p>Closing note from the sheet: “Don&rsquo;t eat too much... lol” followed by “Glenn 808 343-4788”.</p>
+          </section>
+        </section>
+      </div>
+    </main>
+    <script>
+      const filter = document.getElementById("excitement-filter");
+      const lists = Array.from(document.querySelectorAll(".vegas-filter-list"));
+      const vegasPlaceNames = Array.from(document.querySelectorAll(".vegas-filter-list .place-name"));
+
+      if (filter && lists.length > 0) {
+        const items = lists.flatMap((list) => Array.from(list.querySelectorAll("li")));
+
+        filter.addEventListener("change", () => {
+          const showOnlyExciting = filter.checked;
+          for (const item of items) {
+            const isExciting = item.dataset.exciting === "true";
+            item.hidden = showOnlyExciting && !isExciting;
+          }
+        });
+      }
+
+      for (const placeName of vegasPlaceNames) {
+        if (placeName.nextElementSibling?.classList.contains("map-link")) {
+          continue;
+        }
+
+        const query = encodeURIComponent(`${placeName.textContent.trim()} Las Vegas`);
+        const mapLink = document.createElement("a");
+        mapLink.className = "map-link";
+        mapLink.href = `https://www.google.com/maps/search/?api=1&query=${query}`;
+        mapLink.target = "_blank";
+        mapLink.rel = "noopener noreferrer";
+        mapLink.setAttribute("aria-label", `Open ${placeName.textContent.trim()} in Google Maps`);
+        mapLink.textContent = "📍";
+        placeName.after(mapLink);
+      }
+    </script>
+  </body>
+</html>
